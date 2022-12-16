@@ -8,17 +8,16 @@ import (
 	"github.com/pip-services3-gox/pip-services3-rpc-gox/clients"
 )
 
-type EmailHttpClientV1 struct {
+type EmailCommandableHttpClientV1 struct {
 	*clients.CommandableHttpClient
-	defaultParameters *cconf.ConfigParams
 }
 
-func NewEmailHttpClientV1() *EmailHttpClientV1 {
-	return NewEmailHttpClientV1WithConfig(nil)
+func NewEmailCommandableHttpClientV1() *EmailCommandableHttpClientV1 {
+	return NewEmailCommandableHttpClientV1WithConfig(nil)
 }
 
-func NewEmailHttpClientV1WithConfig(config *cconf.ConfigParams) *EmailHttpClientV1 {
-	c := &EmailHttpClientV1{
+func NewEmailCommandableHttpClientV1WithConfig(config *cconf.ConfigParams) *EmailCommandableHttpClientV1 {
+	c := &EmailCommandableHttpClientV1{
 		CommandableHttpClient: clients.NewCommandableHttpClient("v1/email"),
 	}
 
@@ -29,7 +28,7 @@ func NewEmailHttpClientV1WithConfig(config *cconf.ConfigParams) *EmailHttpClient
 	return c
 }
 
-func (c *EmailHttpClientV1) SendMessage(ctx context.Context, correlationId string, message *EmailMessageV1, parameters *cconf.ConfigParams) error {
+func (c *EmailCommandableHttpClientV1) SendMessage(ctx context.Context, correlationId string, message *EmailMessageV1, parameters *cconf.ConfigParams) error {
 	params := cdata.NewAnyValueMapFromTuples(
 		"message", message,
 		"parameters", parameters,
@@ -40,7 +39,7 @@ func (c *EmailHttpClientV1) SendMessage(ctx context.Context, correlationId strin
 	return err
 }
 
-func (c *EmailHttpClientV1) SendMessageToRecipient(ctx context.Context, correlationId string, recipient *EmailRecipientV1, message *EmailMessageV1, parameters *cconf.ConfigParams) error {
+func (c *EmailCommandableHttpClientV1) SendMessageToRecipient(ctx context.Context, correlationId string, recipient *EmailRecipientV1, message *EmailMessageV1, parameters *cconf.ConfigParams) error {
 	params := cdata.NewAnyValueMapFromTuples(
 		"recipient", recipient,
 		"message", message,
@@ -52,7 +51,7 @@ func (c *EmailHttpClientV1) SendMessageToRecipient(ctx context.Context, correlat
 	return err
 }
 
-func (c *EmailHttpClientV1) SendMessageToRecipients(ctx context.Context, correlationId string, recipients []*EmailRecipientV1, message *EmailMessageV1, parameters *cconf.ConfigParams) error {
+func (c *EmailCommandableHttpClientV1) SendMessageToRecipients(ctx context.Context, correlationId string, recipients []*EmailRecipientV1, message *EmailMessageV1, parameters *cconf.ConfigParams) error {
 	params := cdata.NewAnyValueMapFromTuples(
 		"recipients", recipients,
 		"message", message,

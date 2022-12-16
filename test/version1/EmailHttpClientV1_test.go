@@ -10,7 +10,7 @@ import (
 )
 
 type emailHttpClientV1Test struct {
-	client  *version1.EmailHttpClientV1
+	client  *version1.EmailCommandableHttpClientV1
 	fixture *EmailClientFixtureV1
 }
 
@@ -34,7 +34,7 @@ func (c *emailHttpClientV1Test) setup(t *testing.T) {
 		"connection.port", HTTP_PORT,
 	)
 
-	c.client = version1.NewEmailHttpClientV1()
+	c.client = version1.NewEmailCommandableHttpClientV1()
 	c.client.Configure(context.Background(), httpConfig)
 	c.client.Open(context.Background(), "")
 

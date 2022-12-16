@@ -7,8 +7,8 @@ type EmailMessageV1 struct {
 	To      string            `json:"to"`
 	ReplyTo string            `json:"reply_to"`
 	Subject map[string]string `json:"subject"`
-	Text    map[string]string `json:"subject"`
-	Html    map[string]string `json:"subject"`
+	Text    map[string]string `json:"text"`
+	Html    map[string]string `json:"html"`
 }
 
 func EmptyEmailMessageV1() *EmailMessageV1 {
