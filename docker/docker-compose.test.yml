@@ -6,7 +6,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.test
-    image: ${IMAGE:-pipdevs/test}
+    image: ${IMAGE:-pipservices/test}
     links:
       - service
     environment:
@@ -16,11 +16,9 @@ services:
       - HTTP_PORT=8080
 
   service:
-    image: pipdevs/service-email-node:latest
+    image: pipservices/service-accounts-node:latest
     environment:
       - HTTP_ENABLED=true
       - GRPC_ENABLED=true
-      - EMAIL_DISABLED=true
-    # ports:
-    #   - "8080:8080"
-    #   - "8090:8090"
+      - GRPC_PORT=8090
+      - HTTP_PORT=8080
