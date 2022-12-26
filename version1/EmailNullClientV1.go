@@ -9,6 +9,10 @@ import (
 type EmailNullClientV1 struct {
 }
 
+func NewEmailNullClientV1() *EmailNullClientV1 {
+	return &EmailNullClientV1{}
+}
+
 func (c *EmailNullClientV1) SendMessage(ctx context.Context, correlationId string, message *EmailMessageV1, parameters *config.ConfigParams) error {
 	return nil
 }

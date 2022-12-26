@@ -15,10 +15,12 @@ func NewEmailClientFactory() *EmailClientFactory {
 		Factory: cbuild.NewFactory(),
 	}
 
+	nullClientDescriptor := cref.NewDescriptor("service-email", "client", "null", "*", "1.0")
 	cmdHttpClientDescriptor := cref.NewDescriptor("service-email", "client", "commandable-http", "*", "1.0")
 	grpcClientDescriptor := cref.NewDescriptor("service-email", "client", "grpc", "*", "1.0")
 	cmdGrpcClientDescriptor := cref.NewDescriptor("service-email", "client", "commandable-grpc", "*", "1.0")
 
+	c.RegisterType(nullClientDescriptor, clients1.NewEmailNullClientV1)
 	c.RegisterType(cmdHttpClientDescriptor, clients1.NewEmailCommandableHttpClientV1)
 	c.RegisterType(grpcClientDescriptor, clients1.NewEmailGrpcClientV1)
 	c.RegisterType(cmdGrpcClientDescriptor, clients1.NewEmailCommandableGrpcClientV1)
